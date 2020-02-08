@@ -1,0 +1,8 @@
+{
+  "name": "chaofan",
+  "displayName": "炒饭",
+  "testApiUrl": "http://api-test.chaofun.co",
+  "releaseApiUrl": "https://api.chaofun.co",
+  "webUrl": "http://m.chaofun.co/index.html#",
+  "imageUrl": "https://image.chaofun.co",
+}

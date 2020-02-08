@@ -1,0 +1,51 @@
+module.exports = {
+  extends: [
+    'airbnb',
+  ],
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.ios.js', '.android.js'],
+      },
+    },
+  },
+  parser: 'babel-eslint',
+  plugins: [],
+  rules: {
+    'no-restricted-syntax': 0,
+    'import/no-cycle': 0,
+    radix: 0,
+    'no-shadow': 'off',
+    'no-param-reassign': 0,
+    'no-plusplus': 0,
+    'no-use-before-define': 0,
+    'prefer-destructuring': 0,
+    'global-require': 0,
+    'max-len': [2, 160, 4],
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.android.js', '.ios.js'] }],
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
+    'react/forbid-prop-types': 0,
+    'no-underscore-dangle': 0,
+    'no-nested-ternary': 0,
+    'import/named': 0,
+    'no-console': 0,
+    camelcase: 0,
+    'no-bitwise': 0,
+    'consistent-return': 0,
+    'guard-for-in': 0,
+    'import/no-extraneous-dependencies': 0,
+    'import/prefer-default-export': 0,
+    'prefer-const': 1,
+    'react/prop-types': 0,
+    'no-unused-expressions': 0,
+    eqeqeq: 0,
+  },
+  globals: {
+    __DEV__: true,
+    fetch: true,
+    window: true,
+    FormData: true,
+    SCREEN_HEIGHT: true,
+    SCREEN_WIDTH: true
+  },
+};

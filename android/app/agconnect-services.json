@@ -1,0 +1,26 @@
+{
+	"agcgw":{
+		"backurl":"connect-drcn.dbankcloud.cn",
+		"url":"connect-drcn.hispace.hicloud.com"
+	},
+	"client":{
+		"cp_id":"260086000250268950",
+		"product_id":"9105385871708269728",
+		"client_id":"239731110525797568",
+		"client_secret":"3FB75562F472DD17FDB18DE2C915E7E4A91FB036B09935C57ECCBD30FF087525",
+		"app_id":"101425583",
+		"package_name":"com.chaofan.jiangbao"
+	},
+	"service":{
+		"analytics":{
+			"collector_url":"datacollector-drcn.dt.hicloud.com,datacollector-drcn.dt.dbankcloud.cn",
+			"resource_id":"p1",
+			"channel_id":""
+		},
+		"ml":{
+			"mlservice_url":"ml-api-drcn.ai.hicloud.com,ml-api-drcn.ai.dbankcloud.cn"
+		}
+	},
+	"region":"CN",
+	"configuration_version":"1.0"
+}
