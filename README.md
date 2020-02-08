@@ -5,7 +5,7 @@
 ```
 ## android
 ```js
- // 最新版懒得审核了，直接网址下载吧，https://image.chaofun.co/tower/chaofan.apk
+`https://image.chaofun.co/tower/chaofan.apk` // 最新版懒得审核了，直接网址下载吧，
 ```
 
 # 打包命令
@@ -32,11 +32,11 @@ rvm use system && ./pack.rb ios pnu
 ```
 
 # 热更新
-## 强制热更新并立即启动生效
 ## 注意：更新前先执行下面语句，更新错误收集的id
 ```ruby
 ./pack.rb update_code_bundle_id 
 ```
+## 强制热更新并立即启动生效
 ```js
 code-push release-react ios ios -m
 code-push release-react test_ios ios -m
