@@ -34,17 +34,6 @@ export default class Toast extends PureComponent {
     ]).start(this.onClosed);
   }
 
-  close = () => {
-    Animated.timing(
-      this.opacity,
-      {
-        toValue: 0,
-        duration: 250,
-        useNativeDriver: true,
-      },
-    ).start(this.onClosed);
-  }
-
   onClosed = () => {
     const { onClosed } = this.props;
     onClosed && onClosed();
@@ -72,6 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     bottom: 100 + PADDING_TAB,
     marginTop: 10,
+    position: 'absolute',
   },
   text: {
     color: '#d3d3d3',

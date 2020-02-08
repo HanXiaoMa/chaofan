@@ -6,13 +6,10 @@ import {
 const height = 80;
 
 export default class ToastLoading extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.opacity = new Animated.Value(0);
-  }
+  opacity = new Animated.Value(0)
 
   componentDidMount() {
-    const { onClosed, data } = this.props;
+    const { onClosed, duration } = this.props;
     Animated.sequence([
       Animated.timing(
         this.opacity,
@@ -26,7 +23,7 @@ export default class ToastLoading extends PureComponent {
         this.opacity,
         {
           toValue: 0.95,
-          duration: data.duration - 500,
+          duration: duration - 500,
           useNativeDriver: true,
         },
       ),
@@ -38,9 +35,7 @@ export default class ToastLoading extends PureComponent {
           useNativeDriver: true,
         },
       ),
-    ]).start(() => {
-      onClosed();
-    });
+    ]).start(onClosed);
   }
 
   componentWillUnmount() {
@@ -48,6 +43,7 @@ export default class ToastLoading extends PureComponent {
   }
 
   close = () => {
+    const { onClosed } = this.props;
     Animated.timing(
       this.opacity,
       {
@@ -55,18 +51,15 @@ export default class ToastLoading extends PureComponent {
         duration: 250,
         useNativeDriver: true,
       },
-    ).start(() => {
-      const { onClosed } = this.props;
-      onClosed();
-    });
+    ).start(onClosed);
   }
 
   render() {
-    const { data } = this.props;
+    const { text } = this.props;
     return (
       <View style={styles.wrapper}>
         <ActivityIndicator />
-        <Text style={styles.text}>{data.text}</Text>
+        <Text style={styles.text}>{text}</Text>
       </View>
     );
   }
@@ -80,7 +73,7 @@ const styles = StyleSheet.create({
     zIndex: 100,
     height,
     width: height,
-    backgroundColor: '#606060',
+    backgroundColor: '#666666f9',
     borderRadius: 10,
     overflow: 'hidden',
     justifyContent: 'space-between',
@@ -90,5 +83,6 @@ const styles = StyleSheet.create({
   text: {
     color: '#d3d3d3',
     fontSize: 12,
+    marginTop: 5,
   },
 });

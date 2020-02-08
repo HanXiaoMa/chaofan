@@ -3,8 +3,6 @@ import {
   DeviceEventEmitter, View, StyleSheet, Platform,
 } from 'react-native';
 import ShareCom from './ShareCom';
-import ToastLoading from './ToastLoading';
-import ActionSheet from './ActionSheet';
 
 const callback = (chaoFunEventType, type, data) => {
   DeviceEventEmitter.emit('chaoFunCallback', {
@@ -69,16 +67,6 @@ export default class Global extends PureComponent {
             />
           )
         }
-        {
-          toastLoading.show && (
-            <ToastLoading
-              data={toastLoading.data}
-              ref={(v) => { this.toastLoading = v; }}
-              onClosed={() => this.onClosed('toastLoading')}
-            />
-          )
-        }
-        { actionSheet.show && <ActionSheet data={actionSheet.data} onClosed={this.onClosed} /> }
       </View>
     );
   }

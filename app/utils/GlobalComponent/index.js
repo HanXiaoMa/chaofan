@@ -1,14 +1,18 @@
 import React, { PureComponent } from 'react';
 import RootSiblings from 'react-native-root-siblings';
 import { Keyboard, Platform } from 'react-native';
+import { PADDING_TAB } from '../../common/Constant';
 import KeyboardWrapper from './KeyboardWrapper';
 import Modalbox from './Modalbox';
 import Toast from './Toast';
-import { PADDING_TAB } from '../../common/Constant';
+import ActionSheet from './ActionSheet';
+import ToastLoading from './ToastLoading';
 
 const components = [
-  { Component: Modalbox },
+  { Component: Modalbox, multiple: true },
   { Component: Toast, keyboardAdjust: true },
+  { Component: ActionSheet },
+  { Component: ToastLoading },
 ].map(v => ({
   ...v,
   refs: [],
@@ -19,9 +23,9 @@ const components = [
 let keyboardHeight = 0;
 let keyboardWillShowListener = null;
 let keyboardWillHideListener = null;
-if (!keyboardWillShowListener && Platform.OS === 'ios') {
-  keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', (e) => {
-    if (e.isEventFromThisApp) {
+if (!keyboardWillShowListener) {
+  keyboardWillShowListener = Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow', (e) => {
+    if ((e.isEventFromThisApp && Platform.OS === 'ios') || Platform.OS === 'android') {
       keyboardHeight = e.endCoordinates.height;
       components.filter(v => v.keyboardAdjust).forEach((v) => {
         v.keyboardRefs.forEach((v) => {
@@ -32,8 +36,8 @@ if (!keyboardWillShowListener && Platform.OS === 'ios') {
   });
 }
 
-if (!keyboardWillHideListener && Platform.OS === 'ios') {
-  keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', (e) => {
+if (!keyboardWillHideListener) {
+  keyboardWillHideListener = Keyboard.addListener(Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide', (e) => {
     keyboardHeight = 0;
     components.filter(v => v.keyboardAdjust).forEach((v) => {
       v.keyboardRefs.forEach((v) => {
@@ -44,7 +48,12 @@ if (!keyboardWillHideListener && Platform.OS === 'ios') {
 }
 
 const show = (index, props) => {
-  const { Component, keyboardAdjust } = components[index];
+  const {
+    Component, keyboardAdjust, siblings, multiple,
+  } = components[index];
+  if (!multiple && siblings.length > 0) {
+    removeRef(index, siblings[0]);
+  }
   const ref = React.createRef();
   const keyboardRef = React.createRef();
   let sibling;
@@ -100,9 +109,14 @@ const findOne = (arr, fn) => {
 
 export default class GlobalComponent extends PureComponent {
   static showModalbox = props => show(0, props)
-  static closeModalbox = (sibling, immediately) => close(0, sibling, immediately);
+  static closeModalbox = (sibling, immediately) => close(0, sibling, immediately)
 
   static showToast = props => show(1, props)
+
+  static showActionSheet = props => show(2, props)
+
+  static showToastLoading = props => show(3, props)
+  static hideToastLoading = () => close(3)
 
   render() {
     return null;

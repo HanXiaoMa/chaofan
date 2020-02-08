@@ -42,10 +42,10 @@ export const closeModalbox = (immediately) => {
 
 // Toast加载框
 export const showToastLoading = (options = { duration: 5000, text: '加载中' }) => {
-  triggerEvent('toastLoading', options, true);
+  GlobalComponent.showToastLoading(options);
 };
-export const hideToastLoading = (immediately) => {
-  triggerEvent('toastLoading', immediately);
+export const hideToastLoading = () => {
+  GlobalComponent.hideToastLoading();
 };
 
 // Toast提示
@@ -54,6 +54,6 @@ export const showToast = (text: String) => {
 };
 
 // ActionSheet
-export const showActionSheet = (data = { options: Array, cancelButtonIndex: Number, onPress: () => {} }) => {
-  data && triggerEvent('actionSheet', data, true);
+export const showActionSheet = (data) => {
+  GlobalComponent.showActionSheet(data);
 };

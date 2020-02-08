@@ -14,7 +14,7 @@ export default class KeyboardWrapper extends PureComponent {
     }
   }
 
-  onKeyboardShow = (duration = 0, keyboardHeight, absoluteBottom) => {
+  onKeyboardShow = (duration, keyboardHeight, absoluteBottom) => {
     let toValue = 0;
     if (keyboardHeight < absoluteBottom - minScrollY) {
       return;
@@ -27,18 +27,18 @@ export default class KeyboardWrapper extends PureComponent {
       this.translateY,
       {
         toValue,
-        duration,
+        duration: duration || 150,
         useNativeDriver: true,
       },
     ).start();
   }
 
-  onKeyboardHide = (duration = 0) => {
+  onKeyboardHide = (duration) => {
     Animated.timing(
       this.translateY,
       {
         toValue: 0,
-        duration,
+        duration: duration || 150,
         useNativeDriver: true,
       },
     ).start();

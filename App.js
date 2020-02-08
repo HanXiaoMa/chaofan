@@ -6,12 +6,18 @@ import { Provider } from 'react-redux';
 import { MenuProvider } from 'react-native-popup-menu';
 import CodePush from 'react-native-code-push';
 import { PersistGate } from 'redux-persist/integration/react';
+import { RootSiblingParent } from 'react-native-root-siblings';
 import { Router } from './app/router/Router';
 import { wxPayModule, wxAppId } from './app/native/module';
 import { Global } from './app/components';
 import { removeNetListener } from './app/http/Axios';
 import TestIcon from './app/components/TestIcon';
 import store, { persistor } from './app/redux/configureStore';
+import GlobalComponent from './app/utils/GlobalComponent';
+
+// setInterval(() => {
+//   GlobalComponent.showToast({ text: '5122' });
+// }, 5000);
 
 const codePushOptions = {
   checkFrequency: CodePush.CheckFrequency.MANUAL,
@@ -83,6 +89,7 @@ class App extends Component {
               <Router uriPrefix="jiangbaochaofan://" />
               <Global ref={(v) => { this.globalCom = v; }} />
               <TestIcon />
+              <RootSiblingParent />
             </View>
           </PersistGate>
         </MenuProvider>
