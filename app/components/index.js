@@ -11,7 +11,6 @@ import CountdownCom from './CountdownCom';
 import Price from './Price';
 import ModalNormal from './ModalNormal';
 import ImageNetUnkoneSize from './ImageNetUnkoneSize';
-import Global from './Global';
 import FreeTradeList from './FreeTradeList';
 import BottomPay from './BottomPay';
 import AvatarWithShadow from './AvatarWithShadow';
@@ -37,7 +36,7 @@ export {
   FadeImage, Frame, CustomHeader,
   NavigationBarCom, PullToRefresh, ScaleView, ActivityImage,
   CountdownCom, Price, ModalNormal, ImageNetUnkoneSize,
-  Global, FreeTradeList, BottomPay, AuctionUserItem,
+  FreeTradeList, BottomPay, AuctionUserItem,
   AvatarWithShadow, NameAndGender, BottomBtnGroup, Tag, InputVarySize,
   BtnGroup, ShoeImageHeader, Banner, Dropdown, Slogan, KeyboardScrollView,
   Address, ExpressItem, SingleBtn,

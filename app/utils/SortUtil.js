@@ -14,5 +14,5 @@ export const sortObj = (obj) => {
   for (let i = 0; i < _objKeyArray.length; i++) {
     sToken += `${_objKeyArray[i]}=${obj[_objKeyArray[i]]}&`;
   }
-  return `${sToken}drop_store`.replace(/[!|*|\\|(|)]/g, ''); // *********为加密的密钥
+  return `${sToken}*********`.replace(/[!|*|\\|(|)]/g, ''); // *********为加密的密钥
 };

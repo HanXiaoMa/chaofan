@@ -1,31 +1,19 @@
-import { DeviceEventEmitter } from 'react-native';
+import React from 'react';
 import GlobalComponent from './GlobalComponent';
-
-function triggerEvent(type, params, isShow) {
-  DeviceEventEmitter.emit('dropstoreGlobal', {
-    chaoFunEventType: type,
-    params,
-    isShow,
-  });
-}
-
-function addCallbackListener(type, resolve, reject) {
-  const listener = DeviceEventEmitter.addListener('chaoFunCallback', (e) => {
-    if (e.chaoFunEventType === type) {
-      listener.remove();
-      if (e.type === 'success') {
-        resolve(e.data);
-      } else {
-        reject(e.data);
-      }
-    }
-  });
-}
+import ShareCom from '../components/ShareCom';
+import { PADDING_TAB } from '../common/Constant';
 
 // 分享弹窗
 export const showShare = (params: { text: String, img:String, url: String, title: String }) => new Promise((resolve, reject) => {
-  triggerEvent('share', params, true);
-  addCallbackListener('share', resolve, reject);
+  GlobalComponent.showModalbox({
+    element: <ShareCom data={params} resolve={resolve} reject={reject} />,
+    options: {
+      position: 'bottom',
+      style: {
+        height: 138 + PADDING_TAB,
+      },
+    },
+  });
 });
 
 /**

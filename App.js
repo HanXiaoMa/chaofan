@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {
-  View, StatusBar, Platform, DeviceEventEmitter,
-} from 'react-native';
+import { View, StatusBar, Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import { MenuProvider } from 'react-native-popup-menu';
 import CodePush from 'react-native-code-push';
@@ -9,7 +7,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { RootSiblingParent } from 'react-native-root-siblings';
 import { Router } from './app/router/Router';
 import { wxPayModule, wxAppId } from './app/native/module';
-import { Global } from './app/components';
 import { removeNetListener } from './app/http/Axios';
 import TestIcon from './app/components/TestIcon';
 import store, { persistor } from './app/redux/configureStore';
@@ -22,7 +19,7 @@ import GlobalComponent from './app/utils/GlobalComponent';
 const codePushOptions = {
   checkFrequency: CodePush.CheckFrequency.MANUAL,
   rollbackRetryOptions: {
-    delayInHours: 0,
+    delayInHours: 1,
     maxRetryAttempts: 9999,
   },
 };
@@ -54,19 +51,10 @@ class App extends Component {
     }
     // global.XMLHttpRequest = global.originalXMLHttpRequest || global.XMLHttpRequest;
     wxPayModule.registerApp(wxAppId); // 向微信注册
-
-    this.listener = DeviceEventEmitter.addListener('dropstoreGlobal', (e) => {
-      if (e.isShow) {
-        this.globalCom.show(e.chaoFunEventType, e.params);
-      } else {
-        this.globalCom.hide(e.chaoFunEventType, e.params);
-      }
-    });
   }
 
   componentWillUnmount() {
     removeNetListener();
-    this.listener.remove();
   }
 
   onLayout = (e) => {
@@ -87,7 +75,6 @@ class App extends Component {
             <View style={style} onLayout={this.onLayout}>
               <StatusBar translucent backgroundColor="transparent" barStyle="dark-content" />
               <Router uriPrefix="jiangbaochaofan://" />
-              <Global ref={(v) => { this.globalCom = v; }} />
               <TestIcon />
               <RootSiblingParent />
             </View>

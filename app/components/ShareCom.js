@@ -2,12 +2,11 @@ import React, { PureComponent } from 'react';
 import {
   StyleSheet, TouchableOpacity, Text, View,
 } from 'react-native';
-import Modalbox from 'react-native-modalbox';
-import { PADDING_TAB } from '../../common/Constant';
-import Image from '../Image';
-import Images from '../../res/Images';
-import Share from '../../utils/ShareUtil';
-import { showToast } from '../../utils/MutualUtil';
+import { PADDING_TAB } from '../common/Constant';
+import Image from './Image';
+import Images from '../res/Images';
+import Share from '../utils/ShareUtil';
+import { showToast } from '../utils/MutualUtil';
 
 const schemes = [
   { icon: 'wx', scheme: 2, title: '微信好友' },
@@ -15,35 +14,22 @@ const schemes = [
 ];
 
 export default class ShareCom extends PureComponent {
-  componentDidMount() {
-    this.modalbox && this.modalbox.open();
-  }
-
   share = (scheme) => {
-    const { data, successCallback, failCallback } = this.props;
+    const { data, resolve, reject } = this.props;
     const {
       text, img, url, title,
     } = data;
     Share(text, img, url, title, scheme).then(() => {
-      successCallback();
+      resolve();
     }).catch((err) => {
       showToast(err);
-      failCallback();
+      reject();
     });
   }
 
   render() {
-    const { onClosed } = this.props;
     return (
-      <Modalbox
-        position="bottom"
-        backButtonClose
-        onClosed={onClosed}
-        style={styles.modalbox}
-        ref={(v) => {
-          this.modalbox = v;
-        }}
-      >
+      <View style={styles.container}>
         <View style={styles.tisheng}>
           <Text style={{ color: '#4B4B4B', fontSize: 12 }}>分享提升中签率</Text>
         </View>
@@ -57,17 +43,18 @@ export default class ShareCom extends PureComponent {
             ))
           }
         </View>
-      </Modalbox>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  modalbox: {
+  container: {
     width: SCREEN_WIDTH,
     height: 138 + PADDING_TAB,
     paddingBottom: PADDING_TAB,
     paddingHorizontal: 30,
+    backgroundColor: '#fff',
   },
   shareIcon: {
     width: 44,

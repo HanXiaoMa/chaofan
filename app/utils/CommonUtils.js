@@ -155,7 +155,6 @@ export const showChooseSize = (height, onChoosed, onClosed) => {
       style: {
         height,
         width: SCREEN_WIDTH,
-        marginTop: 10,
         backgroundColor: '#fff',
         ...Platform.select({
           ios: {
