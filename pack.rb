@@ -103,6 +103,10 @@ def export_ios
 end
 
 def edit_modules
+  result1 = File.read('node_modules/jpush-react-native/JPush.podspec')
+  File.write('node_modules/jpush-react-native/JPush.podspec', result1.gsub(/s.source/, "s.static_framework = true\n  s.source"))
+  result1 = File.read('node_modules/jcore-react-native/JCore.podspec')
+  File.write('node_modules/jcore-react-native/JCore.podspec', result1.gsub(/s.source/, "s.static_framework = true\n  s.source"))
   puts "---------- finish install and edit node_modules ------------"
 end
 
@@ -158,7 +162,7 @@ elsif action == 'sourcemap'
   when "android" then bundle_sourcemap('android')
   when "all" then bundle_sourcemap('android') && bundle_sourcemap('ios')
   end
-elsif action == 'edit'
+elsif action == 'edit_modules'
   case channel
   when channel then edit_modules()
   end

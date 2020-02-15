@@ -28,7 +28,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - JCore (1.7.0):
+  - JCore (1.7.5):
     - React
   - JPush (2.7.5):
     - React
@@ -444,8 +444,8 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  JCore: 172cfbb7ac67a7f176759c7b476460a25cffca50
-  JPush: 3845ee0526ba766be1ef6ddbc1c3ef3117760e39
+  JCore: f9279e0e92da099136d5606c7e93ddc5c3c03349
+  JPush: 5a71028d4fa889b2aaae78537c817738a6a481d0
   libwebp: db273b5a72581ca31985dec5c3b8bc826a5f59ee
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
