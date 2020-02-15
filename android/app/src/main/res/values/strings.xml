@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">炒饭</string>
+    <!-- 默认的key，本项目使用动态key，这里仅做插件自动链接用 -->
+    <string name="CodePushDeploymentKey">A57M3pUGWACAfTjYLBS8hgmyLmTu4ksvOXqog</string>
+    <string name="CodePushServerURL">https://www.chaxiaoyin.cn</string>
 </resources>
